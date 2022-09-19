@@ -24,6 +24,7 @@ type GAuth struct {
 }
 
 func NewGAuth() *GAuth {
+	rand.Seed(time.Now().UnixNano())
 	return &GAuth{
 		codeLen: 6,
 		table:   arrayFlip(Table),
@@ -42,6 +43,7 @@ func (this *GAuth) SetCodeLength(length float64) error {
 // CreateSecret create new secret
 // 16 characters, randomly chosen from the allowed base32 characters.
 func (this *GAuth) CreateSecret(lens ...int) (string, error) {
+
 	var (
 		length int
 		secret []string
